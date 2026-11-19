@@ -53,3 +53,37 @@ const viewEcommerce = document.getElementById("viewEcommerce");
 viewEcommerce.addEventListener("click", function(){
     window.open("coming.html", "_blank");
 });
+
+
+emailjs.init({
+    publicKey : "nLfPre-TH2wsnYFqR"
+});
+
+
+const form = document.getElementById("contactForm");
+form.addEventListener("submit", function(event){
+
+    event.preventDefault();
+const successMessage = document.getElementById("successMessage");
+
+    emailjs.sendForm(
+    "service_3lp505p",
+    "template_hny35mh",
+    form
+    
+)
+.then(function(response){
+    successMessage.textContent = "Message was sent succussfully";
+
+    form.reset();
+})
+.catch(function(error){
+successMessage.textContent ="Message not sent, Please try again!";
+
+console.log(error);
+
+    
+   
+ });  
+});
+   
